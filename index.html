@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card" style="text-align:center;">
+
+    <!-- Welcome Image (with pulse glow) -->
+    <br><h2 style="color: red;">WELCOME</h2>
+    
+
+    <!-- Canada Flag -->
+    <br><img 
+        src="{{ url_for('static', filename='images/canada.gif') }}" 
+        class="glow-img"
+        width="90"
+    >
+
+
+    <p>
+        This is a Stock Application created in FLASK. You can add and view stock(s) value(s) here.</a>
+    </p>
+    <p>
+        Enjoy our stay!
+    </p>
+
+    <!-- Email Icon -->
+    <a href="mailto:hoomanv2@gmail.com">
+        <img 
+            src="{{ url_for('static', filename='images/email.gif') }}" 
+            class="glow-img"
+            width="60"
+        >
+    </a>
+
+</div>
+
+{% endblock %}

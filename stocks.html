@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div>
+  <h2><p style="color:green;">List of Stocks</p></h2>
+
+  <table style="border-collapse: collapse; width: auto; border: 3px solid black; cellpadding="4"; border: 3px solid green;     
+    <!-- Table Header Row -->
+    <thead>
+      <tr>
+        
+        <th style="border-collapse: collapse; width: auto; border: 3px solid black; cellpadding="4"; border: 3px;>Stock Symbol</P></th>
+        <th style="border-collapse: collapse; width: auto; border: 3px solid black; cellpadding="4"; border: 3px;>Number of Shares</P></th>
+        <th style="border-collapse: collapse; width: auto; border: 3px solid black; cellpadding="4"; border: 3px;>Purchase Price</P></th>
+      </tr>
+    </thead>
+
+    <!-- Table Element (Row) -->
+    <tbody>
+      
+      <td style="border-collapse: collapse; width: auto; border: 3px solid black; cellpadding="4"; border: 3px;>{{ session['stock_symbol'] }}</p></td>
+      <td style="border-collapse: collapse; width: auto; border: 3px solid black; cellpadding="4"; border: 3px;>{{ session['number_of_shares'] }}</p></td>
+      <td style="border-collapse: collapse; width: auto; border: 3px solid black; cellpadding="4"; border: 3px;>${{ session['purchase_price'] }}</p></td>
+      </P>
+    </tbody>
+    
+  </table>
+</div>
+{% endblock %}

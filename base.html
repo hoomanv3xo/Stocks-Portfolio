@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Portfolio</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #00ffcc;
+            text-shadow: 0 0 10px #00ffcc;
+        }
+
+        /* NAVBAR */
+        .nav {
+            text-align: center;
+            padding: 15px;
+        }
+
+        .nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #00ffcc;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav a:hover {
+            color: white;
+            text-shadow: 0 0 10px #00ffcc;
+        }
+
+        /* MAIN CONTAINER */
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        /* CARD */
+        .card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 0 20px rgba(0,255,204,0.2);
+        }
+
+        /* TITLE */
+        .title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #00ffcc;
+            text-shadow: 0 0 10px #00ffcc;
+        }
+
+        /* IMAGE BASE STYLE */
+        .glow-img {
+            transition: all 0.3s ease;
+            border-radius: 10px;
+        }
+
+        /* ✨ NEON HOVER EFFECT */
+        .glow-img:hover {
+            transform: scale(1.08);
+            box-shadow:
+                0 0 10px #00ffcc,
+                0 0 20px #00ffcc,
+                0 0 40px #00ffcc;
+        }
+
+        /* SPECIAL: PULSE ANIMATION */
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 10px #ff00ff; }
+            50% { box-shadow: 0 0 25px #ff00ff; }
+            100% { box-shadow: 0 0 10px #ff00ff; }
+        }
+
+        .pulse {
+            animation: pulseGlow 2s infinite;
+        }
+
+        /* TEXT */
+        p {
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        /* MOBILE */
+        @media (max-width: 600px) {
+            .title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>Stock Portfolio App</header>
+
+<div class="nav">
+    <a href="/">Home</a>
+    <a href="/add_stock">Add Stock</a>
+    <a href="/stocks">View Stock</a>
+    <a href="/about">About</a>
+</div>
+
+<main class="container">
+    {% block content %}
+    {% endblock %}
+</main>
+
+</body>
+</html>
