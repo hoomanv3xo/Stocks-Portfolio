@@ -1,6 +1,7 @@
 from flask import session
 from flask import Flask, render_template, request
 from pydantic import BaseModel, field_validator, ValidationError
+import os
 
 
 
@@ -18,8 +19,7 @@ class StockModel(BaseModel):
 
 app = Flask(__name__)
 
-app.secret_key = 'BAD_SECRET_KEY'
-
+app.secret_key = os.environ.get('SECRET_KEY', 'dev-only-key')
 @app.route('/')
 def index():
     return render_template('index.html')
