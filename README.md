@@ -1,115 +1,106 @@
-# 📈 Stocks Portfolio
+# Stock Portfolio Tracker
 
-A simple Flask web application for tracking stock purchases. Users can add stocks by entering a symbol, number of shares, and purchase price, then view them in a portfolio table.
+A Flask web app for recording stock purchases. Users enter a stock symbol, number of shares, and purchase price through a form, the input is validated on the server, and the entry is saved in the user's session and shown on the stocks page.
 
----
+**[Live Demo](YOUR-RENDER-LINK-HERE)**
 
-# ✅ Features
+> The demo runs on a free Render instance, so the first load after a period of inactivity can take about a minute while the server wakes up.
 
-- Add stocks with symbol validation (1–5 uppercase letters)
-- Input validation using Pydantic
-- View added stock in a portfolio table
-- Multi-page layout with a shared base template
-- Dark themed UI with neon green accents
+<!-- Add a screenshot: save it as screenshot.png in the repo root, then uncomment the line below -->
+<!-- ![Screenshot of the app](screenshot.png) -->
 
----
+## Features
 
-# 📁 Project Structure
+- Add a stock purchase with a symbol, share count, and purchase price
+- Server-side validation with Pydantic (symbols must be 1-5 letters and are stored in uppercase; shares must be a whole number; price must be a number)
+- Entries stored in the Flask session, so no database or account is needed
+- Multiple pages built with Jinja templates: Home, About, Add Stock, and Stocks
+
+## Built With
+
+- Python
+- Flask
+- Pydantic (form validation)
+- Jinja2 templates
+- HTML/CSS
+- Deployed on Render with Gunicorn
+
+## Project Structure
 
 ```
-├── app.py                  # Flask application and routes
-├── requirements.txt        # Python dependencies
-└── templates/
-    ├── base.html           # Shared layout (navbar, styles)
-    ├── index.html          # Home page
-    ├── add_stock.html      # Add stock form
-    ├── stocks.html         # Stock portfolio table
-    └── about.html          # About page
+Stocks-Portfolio/
+├── app.py              # Flask app: routes, validation model, session handling
+├── requirements.txt    # Python dependencies
+├── templates/          # Jinja HTML templates
+└── static/images/      # Images used by the templates
 ```
 
----
+## Run Locally
 
-# 🔧 Prerequisites
-
-- Python 3.8+
-
----
-
-# 🚀 Installation
-
-1. **Clone the repository**
+1. Clone the repository:
 
    ```bash
-   git clone <your-repo-url>
-   cd <your-repo-folder>
+   git clone https://github.com/hoomanv3xo/Stocks-Portfolio.git
+   cd Stocks-Portfolio
    ```
 
-2. **Create and activate a virtual environment** *(recommended)*
+2. (Optional) Create and activate a virtual environment:
 
    ```bash
    python -m venv venv
-   source venv/bin/activate        # macOS/Linux
-   venv\Scripts\activate           # Windows
+   venv\Scripts\activate
    ```
 
-3. **Install dependencies**
+   On macOS or Linux, use `source venv/bin/activate` instead.
+
+3. Install dependencies:
 
    ```bash
    pip install -r requirements.txt
    ```
 
----
+4. Start the app:
 
-# ▶️ Running the App
+   ```bash
+   python -m flask run
+   ```
+
+5. Open `http://127.0.0.1:5000` in your browser.
+
+The app reads its session secret from the `SECRET_KEY` environment variable. If it isn't set, it falls back to a development-only key, so set a real value for any deployment:
 
 ```bash
-python app.py
+python -c "import secrets; print(secrets.token_hex(32))"
 ```
 
-Then open your browser at `http://127.0.0.1:5000`.
+## Deployment
 
----
+The app is deployed on Render as a web service:
 
-# 🗂️ Pages
+- **Build command:** `pip install -r requirements.txt`
+- **Start command:** `gunicorn app:app`
+- **Environment variable:** `SECRET_KEY`
 
-| Route | Page | Description |
-|---|---|---|
-| `/` | Home | Welcome page |
-| `/add_stock` | Add Stock | Form to submit a new stock |
-| `/stocks/` | View Stocks | Table showing the last added stock |
-| `/about` | About | Developer info |
+## How It Works
 
----
+The `/add_stock` route accepts the form submission and passes the values to a `StockModel` Pydantic class. The model checks the symbol format and converts the share count and price to the right types, and invalid input raises a validation error instead of being saved. Valid data is stored in the Flask session and displayed on the `/stocks/` page.
 
-# 🛡️ Stock Validation Rules
+## Limitations and Next Steps
 
-Submitted stock data is validated by Pydantic before being saved:
+This is an early version. Current limitations and planned improvements:
 
-- **Stock Symbol** — letters only, 1–5 characters, auto-converted to uppercase
-- **Number of Shares** — must be a valid integer
-- **Purchase Price** — must be a valid float
+- Only the most recent purchase is stored per visitor
+- Store multiple purchases and show them in a table
+- Add edit and delete actions
+- Persist data in SQLite instead of the session
+- Look up live prices and calculate total portfolio value
 
-Invalid submissions are rejected and logged to the console.
+<!-- If this project follows the TestDriven.io Flask tutorial, credit it here, e.g.:
+## Acknowledgments
+Built while following the TestDriven.io Flask tutorial series. -->
 
----
+## Author
 
-# ⚠️ Known Limitations
-
-- **Session-based storage** — only the most recently added stock is stored; data is lost when the session ends. A database (e.g. SQLite + SQLAlchemy) would be needed for persistence.
-- **Hardcoded secret key** — `app.secret_key` in `app.py` is set to a placeholder value. Before deploying, replace it with a strong random key and load it from an environment variable:
-
-  ```python
-  import os
-  app.secret_key = os.environ.get('SECRET_KEY')
-  ```
-
----
-
-# 📦 Dependencies
-
-| Package | Purpose |
-|---|---|
-| `Flask` | Web framework and routing |
-| `Pydantic` | Form data validation |
-
+**Hooman Vahdat**
+[LinkedIn](https://linkedin.com/in/hoomanvahdat) | [Portfolio](https://hooman-codes.ca) | [GitHub](https://github.com/hoomanv3xo)
 
