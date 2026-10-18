@@ -4,7 +4,6 @@ A Flask web app for recording stock purchases. Users enter a stock symbol, numbe
 
 The demo runs on a free Render instance, so the first load after a period of inactivity can take about a minute while the server wakes up.
 
-<!-- Add a screenshot: save it as screenshot.png in the repo root, then uncomment the line below -->
 <!-- ![Screenshot of the app](stocks-image.png) -->
 
 ## Features
