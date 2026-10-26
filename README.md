@@ -1,4 +1,4 @@
-# Stock Portfolio Tracker **[Live Demo](https://hooman-stocks.onrender.com/)**
+# Stock Portfolio Tracker **[Live Demo](https://hooman-stocks.onrender.com)**
 
 A Flask web app for recording stock purchases. Users enter a stock symbol, number of shares, and purchase price through a form, the input is validated on the server, and the entry is saved in the user's session and shown on the stocks page. 
 
